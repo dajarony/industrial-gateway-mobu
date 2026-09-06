@@ -51,9 +51,9 @@ function Wait-Http([string]$Url, [int]$Seconds = 30) {
     return $false
 }
 
-function Stop-Tree([int]$Pid) {
-    if ($Pid -gt 0) {
-        cmd /c "taskkill /PID $Pid /T /F" 2>$null | Out-Null
+function Stop-Tree([int]$ProcessId) {
+    if ($ProcessId -gt 0) {
+        cmd /c "taskkill /PID $ProcessId /T /F" 2>$null | Out-Null
     }
 }
 
@@ -132,9 +132,11 @@ $deadline = (Get-Date).AddSeconds(35)
 while ((Get-Date) -lt $deadline -and -not $url) {
     foreach ($f in @($cloudOut, $cloudErr)) {
         if (Test-Path $f) {
-            $text = Get-Content $f -Raw -ErrorAction SilentlyContinue
-            $m = [regex]::Match($text, "https://[a-z0-9-]+\.trycloudflare\.com")
-            if ($m.Success) { $url = $m.Value; break }
+            $text = [string](Get-Content $f -Raw -ErrorAction SilentlyContinue)
+            if (-not [string]::IsNullOrWhiteSpace($text)) {
+                $m = [regex]::Match($text, "https://[a-z0-9-]+\.trycloudflare\.com")
+                if ($m.Success) { $url = $m.Value; break }
+            }
         }
     }
     if (-not $url) { Start-Sleep -Milliseconds 500 }
