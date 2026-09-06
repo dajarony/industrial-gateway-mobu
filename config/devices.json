@@ -1,0 +1,14 @@
+{
+  "max_count": 64,
+  "rate_limit_per_minute": 60,
+  "devices": {
+    "lab-sim": {
+      "host": "45.8.248.56",
+      "port": 502,
+      "unit": 1,
+      "register_ranges": [[40001, 40100]],
+      "coil_ranges": [[1, 128]],
+      "discrete_input_ranges": [[10001, 10128]]
+    }
+  }
+}

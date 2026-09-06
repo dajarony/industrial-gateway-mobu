@@ -1,0 +1,6 @@
+.run-state.json
+logs/*.log
+logs/*.jsonl
+__pycache__/
+*.pyc
+.env
