@@ -27,22 +27,24 @@ El launcher comprueba que ambos comandos existan. Las versiones problemáticas q
 
 ## Uso
 
-Arrancar todo:
+Arrancar todo con una sola orden:
 
 ```powershell
-.\auralis-industrial.ps1 start
+.\start.cmd
 ```
+
+También puedes usar `./auralis-industrial.ps1 start` directamente desde PowerShell.
 
 Ver estado:
 
 ```powershell
-.\auralis-industrial.ps1 status
+.\status.cmd
 ```
 
 Parar todo:
 
 ```powershell
-.\auralis-industrial.ps1 stop
+.\stop.cmd
 ```
 
 El arranque muestra una URL `https://...trycloudflare.com` y la URL de OpenAPI que debe consumir Universal MCP:
